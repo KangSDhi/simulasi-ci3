@@ -22,7 +22,7 @@ class Pendaftaran extends CI_Controller{
 			'is_unique' => 'Email Sudah Terdaftar!'
 		]);
 
-		$this->form_validation->set_rules('password', 'Password', 'trin|required|min_length[8]', [
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]', [
 			'required' => 'Password Tidak Boleh Kosong!',
 			'min_length' => 'Password Minimal 8 Karakter!'
 		]);

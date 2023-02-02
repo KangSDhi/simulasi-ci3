@@ -58,7 +58,7 @@
 										<i id="confirm-password" class="fa fa-eye" aria-hidden="true"></i>
 									</div>
 									<input type="password" name="confirmPassword" id="password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" class="single-input">
-									<small id="confirmPassword" class="text-danger"></small>
+									<small id="confirmPassword_error" class="text-danger"></small>
 								</div>
 								<div class="mt-10 text-danger">
 									<button type="button" id="btn-pendaftaran" class="main_btn2 mt-10 col-lg">Daftar</button>
@@ -80,6 +80,7 @@
 	<script>
 		$(document).ready(function(){
 
+			// Show Password
 			$('#show-password').on('click', function(){
 				if ($(this).hasClass('fa-eye')) {
 					$('#password').attr('type', 'text');
@@ -90,6 +91,75 @@
 					$(this).removeClass('fa-eye-slash');
 					$(this).addClass('fa-eye');
 				}
+			});
+
+			// Show Confirm Password
+			$('#confirm-password').on('click', function(){
+				if ($(this).hasClass('fa-eye')) {
+					$('#password2').attr('type', 'text');
+					$(this).removeClass('fa-eye');
+					$(this).addClass('fa-eye-slash');
+				} else {
+					$('#password2').attr('type', 'password');
+					$(this).removeClass('fa-eye-slash');
+					$(this).addClass('fa-eye');
+				}	
+			});
+
+			//Submit password admin
+			$('#btn-pendaftaran').on('click', function(){
+				const formPendaftaran = $('#formPendaftaran');
+
+				$.ajax({
+					url: "<?php echo base_url('pendaftaran/daftar') ?>",
+					method: "POST",
+					data: formPendaftaran.serialize(),
+					dataType: "JSON",
+					success: function(data){
+						console.log(data);
+						//Data Error
+						if(data.error){
+							if(data.nama_error != '')
+							$('#nama_error').html(data.nama_error);
+							else $('#nama_error').html('');
+
+							if(data.email_error != '')
+							$('#email_error').html(data.email_error);
+							else $('#email_error').html('');
+
+							if(data.password_error != '')
+							$('#password_error').html(data.password_error);
+							else $('#password_error').html('');
+
+							if(data.confirmPassword_error != '')
+							$('#confirmPassword_error').html(data.confirmPassword_error);
+							else $('#confirmPassword_error').html('');
+
+							Swal.fire({
+								icon: 'warning',
+								title: 'Oops...',
+								text: 'Periksa Kembali Data Anda!'
+							});
+						}
+
+						//Pendaftaran Sukses
+						if (data.success) {
+							formPendaftaran.trigger('reset');
+							$('#nama_error').html('');
+							$('#email_error').html('');
+							$('#password_error').html('');
+							$('#confirmPassword_error').html('');
+
+							Swal.fire({
+								icon: 'success',
+								title: 'Pendaftaran Berhasil Dilakukan',
+								text: 'Silahkan Login!'
+							});
+
+							window.location.replace(data.link);
+						}
+					}
+				});
 			});
 		});
 	</script>
