@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $title; ?></title>
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/adminlte3/plugins/fontawsome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/adminlte3/plugins/fontawesome-free/css/all.min.css">
 	<!-- Datatables -->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/adminlte3/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 	<!-- summernote -->
