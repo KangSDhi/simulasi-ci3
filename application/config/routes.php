@@ -56,5 +56,7 @@ $route['banksoal/add/(:num)'] = 'BankSoal/add/$1';
 $route['banksoal/ajaxUpdate/(:num)'] = 'BankSoal/ajaxUpdate/$1';
 $route['banksoal/update'] = 'BankSoal/update';
 $route['banksoal/delete/(:num)/(:num)'] = 'BankSoal/delete/$1/$2';
+$route['datamember'] = 'DataMember/index';
+$route['datamember/ajaxGetMembers'] = 'DataMember/ajaxGetMembers';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

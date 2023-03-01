@@ -15,7 +15,7 @@ class M_user extends CI_Model {
 	private function _tbl_user()
 	{
 		$this->db->select('*');
-		$this->db->from('tb_user');
+		$this->db->from('tbl_user');
 		$this->db->where('role_id', 2);
 		$this->db->where('is_active', 1);
 	}
