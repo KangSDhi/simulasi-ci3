@@ -121,8 +121,8 @@ class BankSoal extends CI_Controller {
     private function _action($idKategoriSoal, $idBankSoal)
     {
         $link = "<a href='".base_url('banksoal/update/'.$idKategoriSoal.'/'.$idBankSoal)."' data-toggle='tooltip' data-placement='top' class='btn-edit' title='Update' value='".$idBankSoal."'>"
-        ."<button type='button' class='btn btn-outline-success btn-xs' data-target='#modalEdit'><i class='fa fa-edit'></i></button></a> <a href='".base_url('banksoal/delete'.$idKategoriSoal.'/'.$idBankSoal)
-        ." class='btn delete' data-toggle='tooltip' data-placement='top' title='Delete'><button type='button' class='btn btn-outline-danger btn-xs'><i class='fa fa-trash'></i></button></a>";
+        ."<button type='button' class='btn btn-outline-success btn-xs' data-target='#modalEdit'><i class='fa fa-edit'></i></button></a> <a href='".base_url('banksoal/delete/'.$idKategoriSoal.'/'.$idBankSoal)
+        ."' class='btn delete' data-toggle='tooltip' data-placement='top' title='Delete'><button type='button' class='btn btn-outline-danger btn-xs'><i class='fa fa-trash'></i></button></a>";
 
         return $link;
     }
@@ -300,6 +300,7 @@ class BankSoal extends CI_Controller {
 
         foreach ($list as $l) {
             $no++;
+            $row = array();
             $row[] = $no;
             $row[] = $l->pertanyaan;
             $row[] = $l->pilihan_a;

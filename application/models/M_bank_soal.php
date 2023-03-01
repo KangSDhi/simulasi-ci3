@@ -46,7 +46,7 @@ class M_bank_soal extends CI_Model {
         if (count($this->column_search) - 1 == $i) {
             // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-        } else {
+        } else if(isset($this->order)){
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }

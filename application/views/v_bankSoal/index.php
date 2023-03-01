@@ -57,6 +57,7 @@
                                                 <th>Pilihan C</th>
                                                 <th>Pilihan D</th>
                                                 <th>Pilihan E</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -69,6 +70,7 @@
                                                 <th>Pilihan C</th>
                                                 <th>Pilihan D</th>
                                                 <th>Pilihan E</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -130,7 +132,7 @@
                 const form = $('#formInputBankSoal');
 
                 $.ajax({
-                    url: "<?php echo base_url('banksoal/add/') ?>" + idKategoriSoal;
+                    url: "<?php echo base_url('banksoal/add/') ?>" + idKategoriSoal,
                     method: "POST",
                     data: form.serialize(),
                     dataType: "JSON",
@@ -139,57 +141,57 @@
                         if (data.error) {
 
                             if(data.pertanyaan_error != '')
-                            $('#pertanyaan_error').html('data.pertanyaan_error');
+                            $('#pertanyaan_error').html(data.pertanyaan_error);
                             else
                             $('#pertanyaan_error').html('');
 
                             if(data.pilihan_a_error != '')
-                            $('#pilihan_a_error').html('data.pilihan_a_error');
+                            $('#pilihan_a_error').html(data.pilihan_a_error);
                             else
                             $('#pilihan_a_error').html('');
 
                             if(data.pilihan_b_error != '')
-                            $('#pilihan_b_error').html('data.pilihan_b_error');
+                            $('#pilihan_b_error').html(data.pilihan_b_error);
                             else
                             $('#pilihan_b_error').html('');
 
                             if(data.pilihan_c_error != '')
-                            $('#pilihan_c_error').html('data.pilihan_c_error');
+                            $('#pilihan_c_error').html(data.pilihan_c_error);
                             else
                             $('#pilihan_c_error').html('');
 
                             if(data.pilihan_d_error != '')
-                            $('#pilihan_d_error').html('data.pilihan_d_error');
+                            $('#pilihan_d_error').html(data.pilihan_d_error);
                             else
                             $('#pilihan_d_error').html('');
 
                             if(data.pilihan_e_error != '')
-                            $('#pilihan_e_error').html('data.pilihan_e_error');
+                            $('#pilihan_e_error').html(data.pilihan_e_error);
                             else
                             $('#pilihan_e_error').html('');
 
                             if(data.nilai_a_error != '')
-                            $('#nilai_a_error').html('data.nilai_a_error');
+                            $('#nilai_a_error').html(data.nilai_a_error);
                             else
                             $('#nilai_a_error').html('');
 
                             if(data.nilai_b_error != '')
-                            $('#nilai_b_error').html('data.nilai_b_error');
+                            $('#nilai_b_error').html(data.nilai_b_error);
                             else
                             $('#nilai_b_error').html('');
 
                             if(data.nilai_c_error != '')
-                            $('#nilai_c_error').html('data.nilai_c_error');
+                            $('#nilai_c_error').html(data.nilai_c_error);
                             else
                             $('#nilai_c_error').html('');
 
                             if(data.nilai_d_error != '')
-                            $('#nilai_d_error').html('data.nilai_d_error');
+                            $('#nilai_d_error').html(data.nilai_d_error);
                             else
                             $('#nilai_d_error').html('');
 
                             if(data.nilai_e_error != '')
-                            $('#nilai_e_error').html('data.nilai_e_error');
+                            $('#nilai_e_error').html(data.nilai_e_error);
                             else
                             $('#nilai_e_error').html('');
                         }
@@ -269,12 +271,128 @@
                         $('[name="nilai_c2"]').val(data.nilai_c);
                         $('[name="nilai_d2"]').val(data.nilai_d);
                         $('[name="nilai_e2"]').val(data.nilai_e);
-                        $('#modal-edit').modal('show');
+                        $('#modalEdit').modal('show');
+                    }
+                });
+            });
+            
+            // Save update data bank soal
+            $('#btn-updateBankSoal').on('click', function(e){
+                const formEdit = $('#formEditBankSoal');
+
+                $.ajax({
+                    url: "<?php echo base_url('banksoal/update') ?>",
+                    method: "POST",
+                    data: formEdit.serialize(),
+                    dataType: "JSON",
+                    success: function(data){
+                        // Data Error
+                        if (data.error) {
+                            if(data.pertanyaan2_error != '')
+                            $('#pertanyaan2_error').html('data.pertanyaan2_error');
+                            else 
+                            $('#pertanyaan2_error').html('');
+
+                            if(data.pilihan_a2_error != '')
+                            $('#pilihan_a2_error').html('data.pilihan_a2_error');
+                            else 
+                            $('#pilihan_a2_error').html('');
+
+                            if(data.pilihan_b2_error != '')
+                            $('#pilihan_b2_error').html('data.pilihan_b2_error');
+                            else 
+                            $('#pilihan_b2_error').html('');
+
+                            if(data.pilihan_c2_error != '')
+                            $('#pilihan_c2_error').html('data.pilihan_c2_error');
+                            else 
+                            $('#pilihan_c2_error').html('');
+
+                            if(data.pilihan_d2_error != '')
+                            $('#pilihan_d2_error').html('data.pilihan_d2_error');
+                            else 
+                            $('#pilihan_d2_error').html('');
+
+                            if(data.pilihan_e2_error != '')
+                            $('#pilihan_e2_error').html('data.pilihan_e2_error');
+                            else 
+                            $('#pilihan_e2_error').html('');
+
+                            if(data.nilai_a2_error != '')
+                            $('#nilai_a2_error').html('data.nilai_a2_error');
+                            else 
+                            $('#nilai_a2_error').html('');
+
+                            if(data.nilai_b2_error != '')
+                            $('#nilai_b2_error').html('data.nilai_b2_error');
+                            else 
+                            $('#nilai_b2_error').html('');
+
+                            if(data.nilai_c2_error != '')
+                            $('#nilai_c2_error').html('data.nilai_c2_error');
+                            else 
+                            $('#nilai_c2_error').html('');
+
+                            if(data.nilai_d2_error != '')
+                            $('#nilai_d2_error').html('data.nilai_d2_error');
+                            else 
+                            $('#nilai_d2_error').html('');
+
+                            if(data.nilai_e2_error != '')
+                            $('#nilai_e2_error').html('data.nilai_e2_error');
+                            else 
+                            $('#nilai_e2_error').html('');
+                        }
+
+                        // Data Bank Soal Berhasil Disimpan
+                        if (data.success) {
+                            formEdit.trigger('reset');
+                            $('#modalEdit').modal('hide');
+                            $('.textarea').next().find(".note-editable").text("");
+                            $('#pertanyaan2_error').html('');
+                            $('#pilihan_a2_error').html('');
+                            $('#pilihan_b2_error').html('');
+                            $('#pilihan_c2_error').html('');
+                            $('#pilihan_d2_error').html('');
+                            $('#pilihan_e2_error').html('');
+                            $('#nilai_a2_error').html('');
+                            $('#nilai_b2_error').html('');
+                            $('#nilai_c2_error').html('');
+                            $('#nilai_d2_error').html('');
+                            $('#nilai_e2_error').html('');
+                            $('#example').DataTable().ajax.reload();
+                            toastr.success('Data bank soal berhasil diupdate.');
+                        }
                     }
                 });
             });
 
-            
+            // Summer note
+            $('.textarea').summernote({
+                placeholder: 'Enter Pertanyaan Soal....',
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                ],
+            });
+
+            $('.textarea2').summernote({
+                placeholder: 'Enter Pertanyaan Soal....',
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                ],
+            });
         });
     </script>
 </body>
