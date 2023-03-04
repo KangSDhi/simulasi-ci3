@@ -100,7 +100,7 @@ class M_bank_soal extends CI_Model {
 
     public function acakSoal($idKategoriSoal, $limit)
     {
-        $this->db->select('id', 'kategori_id');
+        $this->db->select('id, kategori_id');
         $this->db->from('tbl_bank_soal');
         $this->db->where('kategori_id', $idKategoriSoal);
         $this->db->order_by('rand()');
