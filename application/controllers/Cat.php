@@ -177,7 +177,7 @@ class Cat extends CI_Controller {
         $token = $cekToken['token_simulasi'];
 
         // Jika token ada
-        if ($token) {
+        if ($cekToken) {
             // Cek nomor soal
             $jawaban = explode(",", $listJawaban);
             $jumlahSoal = sizeof($jawaban);
