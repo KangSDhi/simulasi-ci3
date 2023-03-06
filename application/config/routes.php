@@ -60,5 +60,7 @@ $route['datamember'] = 'DataMember/index';
 $route['datamember/ajaxGetMembers'] = 'DataMember/ajaxGetMembers';
 $route['settingspasswordadmin'] = 'SettingsPasswordAdmin/index';
 $route['settingspasswordadmin/update'] = 'SettingsPasswordAdmin/update';
+$route['accessdenied'] = 'AccessDenied/index';
+$route['accessdenied/gohome'] = 'AccessDenied/goHome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
