@@ -129,18 +129,111 @@
                                             // Nomor Soal yang aktif
                                             if ($noSoal == $i) {
                                                 echo "<div class=\"col-lg-2\">";
-                                                
+                                                echo "<a href='".base_url('cat/index?tokenSimulasi='.urlencode($token).'&noSoal='.$i)."'>";
+                                                echo "<button type=\"button\" class=\"btn btn-block btn-success btn-xs\" style=\"margin-bottom:3px;\">".$i.".</button>";
+                                                echo "</a>";
+                                                echo "</div>";
+                                            } elseif ($jwb[4] == "T") {
+                                                // Sudah dijawab
+                                                echo "<div class=\"col-lg-2\">";
+                                                echo "<a href='".base_url('cat/index?tokenSimulasi='.urlencode($token).'&noSoal='.$i)."'>";
+                                                echo "<button type=\"button\" class=\"btn btn-block btn-primary btn-xs\" style=\"margin-bottom:3px;\">".$i.".".$jwb[2]."</button>";
+                                                echo "</a>";
+                                                echo "</div>";
+                                            } else {
+                                                echo "<div class=\"col-lg-2\">";
+                                                echo "<a href='".base_url('cat/index?tokenSimulasi='.urlencode($token).'&noSoal='.$i)."'>";
+                                                echo "<button type=\"button\" class=\"btn btn-block btn-outline-primary btn-xs\" style=\"margin-bottom:3px;\">".$i.".</button>";
+                                                echo "</a>";
+                                                echo "</div>";
                                             }
                                         }
                                         ?>
                                     </div>
                                 </div>
+                                <!-- /.Nomor Soal -->
                             </div>
                         </div>
+                        <!-- /.col-md-4 -->
                     </div>
+                    <!-- /.row -->
                 </div>
+                <!-- /.container-fluid -->
             </div>
+            <!-- /.content -->
         </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                <b>Version</b> 1.0.0
+            </div>
+            <!-- Default to the left -->
+            <strong>
+                Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+                <a href="">KangSDhi</a>.
+            </strong>
+            All rights reserved.
+        </footer>
     </div>
+
+    <?php $this->load->view('layouts_admin/script'); ?>
+
+    <script>
+        <?php
+        date_default_timezone_set('Asia/Jakarta');
+        $tgl = date('Y-m-d H:i:s');
+        $awal = strtotime($tgl);
+        $akhir = strtotime($waktuSelesaiUjian);
+        $diff = $akhir - $awal;
+        $done = base_url('cat/selesaiUjian'.$idSimulasi);
+        ?>
+
+        $(document).ready(function(){
+
+            var clock;
+            clock = $('.clock').FlipClock({
+                clockFace: 'HourlyCounter',
+                autoStart: false,
+                callbacks: {
+                    stop: function(){
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'Waktu Ujian Sudah Berakhir!'
+                        });
+                        window.location.assign("<?php echo $done; ?>");
+                    }
+                }
+            });
+
+            clock.setTime(<?php echo $diff; ?>);
+            clock.setCountdown(true);
+            clock.start();
+
+            // Selesai Ujian
+            $('body').on('click', '#btn-selesaiUjian', function(e){
+                e.preventDefault();
+
+                // Alamat Controller CAT Method selesaiUjian()
+                const url = $(this).attr('href');
+
+                Swal.fire({
+                    title: 'Selesai Ujian',
+                    text: 'Anda ingin mengakhiri ujian simulasi CAT SKD CPNS ini?',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

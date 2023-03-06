@@ -123,7 +123,7 @@ class Cat extends CI_Controller {
         $list2 = str_replace("[", "", $list2);
         $list2 = str_replace("]", "", $list2);
         $list2 = str_replace('"', "", $list2);
-        $listJawaban = str_replace(",", ":X:0:F", $list2);
+        $listJawaban = str_replace(",", ":X:0:F,", $list2);
 
         /*
         | Contoh Format List Jawaban Peserta:
@@ -171,21 +171,20 @@ class Cat extends CI_Controller {
         // Cek Token Simulasi
         $cekToken = $this->M_simulasi->cekTokenSimulasi($tokenSimulasi)->row_array();
         
-        $idSimulasi = $cekToken['id'];
-        $listJawaban = $cekToken['list_jawaban'];
-        $waktuSelesai = $cekToken['waktu_selesai'];
-        $token = $cekToken['token_simulasi'];
-
+    
         // Jika token ada
         if ($cekToken) {
+            $idSimulasi = $cekToken['id'];
+            $listJawaban = $cekToken['list_jawaban'];
+            $waktuSelesai = $cekToken['waktu_selesai'];
+            $token = $cekToken['token_simulasi'];
+
             // Cek nomor soal
             $jawaban = explode(",", $listJawaban);
             $jumlahSoal = sizeof($jawaban);
 
             // Jika Melewati No Soal
             if ($noSoal<=0 OR $noSoal>$jumlahSoal) {
-                // print_r('echo');
-                // redirect('cat/index?tokenSimulasi='.urlencode($tokenSimulasi).'&noSoal=1');
                 redirect('cat/index?tokenSimulasi='.urlencode($tokenSimulasi).'&noSoal=1');
             }
 
