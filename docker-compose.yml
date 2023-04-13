@@ -22,7 +22,7 @@ services:
    - ./:/var/www
    - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
   ports:
-   - 8181:90
+   - 8084:90
   networks:
    - codeigniter-net
 
@@ -30,7 +30,7 @@ services:
   image: mysql:5.7
   container_name: simulasi-ci3-db
   ports:
-   - 3307:3306
+   - 3308:3306
   volumes:
    - mysqldata:/var/lib/mysql
   env_file:
@@ -42,7 +42,7 @@ services:
   image: phpmyadmin/phpmyadmin
   container_name: simulasi-ci3-pma
   ports:
-   - 8282:80
+   - 8085:80
   env_file:
    - .env
   depends_on:
